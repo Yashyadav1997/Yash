@@ -1,0 +1,226 @@
+Ques. What is the name of the feature responsible for generating Regex objects?
+
+import re
+re.compile("string")
+#The re.compile() function returns Regex objects.
+     
+re.compile(r'string', re.UNICODE)
+Ques. Why do raw strings often appear in Regex objects?
+Ans . Raw strings are used so that backslashes do not have to be escaped
+
+Ques. What is the return value of the search() method ?
+Ans . The search() method searches a string for a specified value, and returns the position of the match.
+
+The search value can be string or a regular expression. This method returns -1 if no match is found
+
+Ques. From a Match item, how do you get the actual strings that match the pattern?
+
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo = phoneNumRegex.search('My number is 345-444-4542.')
+print('Phone number is: ' + mo.group())
+#Calling matchingObject.group() will return the string.
+     
+Phone number is: 345-444-4542
+Ques. In the regex which created from the r'(\d\d\d)-(\d\d\d-\d\d\d\d)', what does group zero cover?
+Group 2? Group 1?
+
+
+phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+mo = phoneNumRegex.search('My number is 345-444-4542.')
+mo.group(1)
+     
+'345'
+
+mo.group(2)
+
+     
+'444-4542'
+
+mo.group(0)
+     
+'345-444-4542'
+Ques. In standard expression syntax, parentheses and intervals have distinct meanings. How can you tell a regex that you want it to fit real parentheses and periods?
+Ans. Periods and parentheses can be escaped with a backslash: ., (, and ).
+
+Ques. The findall() method returns a string list or a list of string tuples. What causes it to return one of the two options?
+Ans. If the regex has no groups, a list of strings is returned. If the regex has groups, a list of tuples of strings is
+
+returned.
+
+Ques. In standard expressions, what does the | character mean?
+Ans. The | character is called a pipe. You can use it anywhere you want to match one of many expressions.
+
+For example, the regular expression r'Cricket|Soccer Sport' will match either 'Cricket' or 'Soccer Sport'.
+
+When both Cricket and Soccer Sport occur in the searched string, the first occurrence of matching text will be returned as the Match object.
+
+The | character signifies matching “either, or” between two groups
+
+
+
+SportRegex = re.compile (r'Cricket|Soccer Sport')
+s1 = SportRegex.search('Cricket and Soccer Sport')
+s1.group()
+     
+'Cricket'
+
+s2 = SportRegex.search('Soccer Sport and Cricket')
+s2.group()
+
+     
+'Soccer Sport'
+Ques. In regular expressions, what does the ? character stand for?
+Ans. The ? character can either mean “match zero or one of the preceding group”.
+
+
+batRegex = re.compile(r'Bat(wo)?man')
+mo1 = batRegex.search('The Adventures of Batman')
+mo1.group()
+     
+'Batman'
+
+mo2 = batRegex.search('The Adventures of Batwoman')
+mo2.group()
+     
+'Batwoman'
+Ques.In regular expressions, what is the difference between the + and * characters?
+Ans. The + matches one or more. The * matches zero or more
+
+Ques. What is the difference between {4} and {4,5} in regular expression?
+Ans. The {3} matches exactly three instances of the preceding group.
+
+The {3,5} matches between three and five instances
+
+Ques. What do you mean by the \d, \w, and \s shorthand character classes signify in regular expressions?
+Ans .The \d, stands for single digit, Any numeric digit from 0 to 9
+
+\w, stands for single word, Any letter, numeric digit, or the underscore character. (Think of this as matching “word” characters.) \s stands for single space character, Any space, tab, or newline character. (Think of this as matching “space” characters.)
+
+Ques. What do means by \D, \W, and \S shorthand character classes signify in regular expressions?
+Ans. \D - > Any character that is not a numeric digit from 0 to 9.
+
+\W - > Any character that is not a letter, numeric digit, or the underscore character.
+\S - > Any character that is not a space, tab, or newline.
+
+Ques. What is the difference between .? and .?
+Ans) .* - The dot-star uses greedy mode: It will always try to match as much text as possible.
+
+.? - To match any and all text in a non-greedy fashion, use the dot, star, and question mark (.?). Like with braces, the question mark tells Python to match in a non-greedy way.
+
+
+
+greedyRegex = re.compile(r'<.*>')
+mo = greedyRegex.search(' for dinner.>')
+mo.group()
+     
+' for dinner.>'
+
+
+nongreedyRegex = re.compile(r'<.*?>')
+mo = nongreedyRegex.search(' for dinner.>')
+mo.group()
+     
+''
+Ques. What is the syntax for matching both numbers and lowercase letters with a character class?
+Ans. Either [0-9a-z] or [a-z0-9]
+
+
+reg1 = re.compile(r'[0-9a-z]')
+reg2 = re.compile(r'[a-z0-9]')
+
+mo1 = reg1.search('100 times I am Reading  this for 100 th time')
+mo1.group()
+     
+'1'
+
+reg2 = re.compile(r'[a-z0-9]')
+
+mo1 = reg2.search('times I am Reading  this for 100 th time')
+mo1.group()
+     
+'t'
+Ques. What is the procedure for making a normal expression in regax case insensitive?
+Ans. Passing re.I or re.IGNORECASE as the second argument to re.compile() will make the matching case insensitive
+
+
+casesen = re.compile(r'machine', re.I)
+casesen.search('Machine learning is part of data science').group()
+     
+'Machine'
+
+casesen.search('MACHINE is learning.').group()
+     
+'MACHINE'
+Ques. What does the . character normally match? What does it match if re.DOTALL is passed as 2nd argument in re.compile()?
+The . character normally matches any character except the newline character.
+
+If re.DOTALL is passed as the second argument to re.compile(), then the dot will also match newline characters.
+
+Ques. If numRegex = re.compile(r'\d+'), what will numRegex.sub('X', '11 drummers, 10 pipers, five rings, 4 hen') return?
+
+numRegex = re.compile(r'\d+')
+mo = numRegex.sub('X', '11 drummers, 10 pipers, five rings, 4 hen')
+mo
+     
+'X drummers, X pipers, five rings, X hen'
+Ques. What does passing re.VERBOSE as the 2nd argument to re.compile() allow to do?
+Ans. The re.VERBOSE argument allows you to add whitespace and comments to the string passed to re.compile()
+
+Ques. How would you write a regex that match a number with comma for every three digits? It must match the given following:
+
+reg1 = re.compile(r'^\d{1,3}(,\d{3})*$')
+mo1 = reg1.search('42')
+mo1.group()
+     
+'42'
+
+reg1 = re.compile(r'^\d{1,3}(,\d{3})*$')
+mo1 = reg1.search('1,234')
+mo1.group()
+     
+'1,234'
+
+
+reg1 = re.compile(r'^\d{1,3}(,\d{3})*$')
+mo1 = reg1.search('6,368,745')
+mo1.group()
+     
+'6,368,745'
+Ques. How would you write a regex that matches the full name of someone whose last name is Watanabe? You can assume that the first name that comes before it will always be one word that begins with a capital letter. The regex must match the following:
+
+name = re.compile(r'[A-Z][a-z]*\sWatanabe')
+reg1 = re.compile(r'^\d{1,3}(,\d{haruto Watanabe3})*$')
+mo1 = name.search('Haruto Watanabe')
+mo1.group()
+     
+'Haruto Watanabe'
+
+name = re.compile(r'[A-Z][a-z]*\sWatanabe')
+reg1 = re.compile(r'^\d{1,3}(,\d{3})*$')
+mo1 = name.search('Alice Watanabe')
+mo1.group()
+     
+'Alice Watanabe'
+
+
+name = re.compile(r'[A-Z][a-z]*\sWatanabe')
+reg1 = re.compile(r'^\d{1,3}(,\d{3})*$')
+mo1 = name.search('Robocop Watanabe')
+mo1.group()
+     
+'Robocop Watanabe'
+Ques. How would you write a regex that matches a sentence where the first word is either Alice, Bob,or Carol; the second word is either eats, pets, or throws; the third word is apples, cats, or baseballs; and the sentence ends with a period? This regex should be case-insensitive. It must match the following:
+
+name = re.compile(r'(Alice|Bob|Carol)\s(eats|pets|throws)\s(apples|cats|baseballs)\.', re.IGNORECASE)
+
+mo1 = name.search('Alice eats apples.')
+mo1.group()
+     
+'Alice eats apples.'
+
+name = re.compile(r'(Alice|Bob|Carol)\s(eats|pets|throws)\s(apples|cats|baseballs)\.', re.IGNORECASE)
+
+mo1 = name.search('Carol throws baseballs.')
+mo1.group()
+     
+'Carol throws baseballs.'
