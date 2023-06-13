@@ -1,0 +1,136 @@
+
+Python Basic Programming 7
+Q. Write a Python Program to find sum of array?
+
+
+sum =0
+arr = [1,2,3,4,5,9]
+for i in range(0,len(arr)):
+    sum+=arr[i]
+print("Sum : ",sum)
+     
+Sum :  24
+Q. Write a Python Program to find largest element in an array?
+
+
+c = 0
+arr = [1,2,3,4,77,9]
+for i in range(0, len(arr)):
+  if c > arr[i]:
+    print(c)
+  else :
+    c = arr[i]
+
+print("Largest element in {} is {}".format(arr ,c) )   
+
+  
+     
+77
+Largest element in [1, 2, 3, 4, 77, 9] is 77
+Q. Write a Python Program for array rotation?
+
+
+arr = [1,2,3,4,77,9]
+rot = []
+l = len(arr) -1
+for i in range(l , 0, -1):
+  print(arr[i])
+
+     
+9
+77
+4
+3
+2
+
+
+     
+Q. Write a Python Program for array rotation?
+
+
+l = int(input("Enter the lenth of arr : "))
+arr = []
+
+for i in range(l):
+    arr.append(int(input()))
+print("Arr is ",arr)
+rotation = input("Enter Rotation Right/Left : ")
+noro = int(input("Enter the number of elements to rotate  : "))
+if noro > l:
+    print("can not rotate as elements to rotate is larger then arr length")
+else:
+    rarr = []
+    if rotation.upper() == "RIGHT":
+        rarr[:] = arr[-noro:] + arr[:(l-noro)]
+        print("After right rotation : ",rarr)
+    elif rotation.upper() == "LEFT":
+        rarr[:] = arr[noro:l] + arr[:noro] 
+        print("After Left rotation : ",rarr)
+    else:
+        print("Wrong Entry")
+     
+Enter the lenth of arr : 7
+6
+9
+8
+5
+2
+4
+5
+Arr is  [6, 9, 8, 5, 2, 4, 5]
+Enter Rotation Right/Left : right
+Enter the number of elements to rotate  : 5
+After right rotation :  [8, 5, 2, 4, 5, 6, 9]
+Q. Write a Python Program to Split the array and add the first part to the end?
+
+
+l = int(input("Enter the lenth of your list : "))
+arr = []
+
+for i in range(l):
+    arr.append(int(input()))
+print("The List  ",arr)
+
+noro = int(input("Enter the number of elements to split  : "))
+if noro > l:
+    print("can not split as elements to split is larger then list lengh")
+else:
+    print("The split list is :",arr[:noro])
+    rarr[:] = arr[noro:l] + arr[:noro]
+    print("The List after split and add :", rarr)
+     
+Enter the lenth of your list : 4
+3
+55
+77
+88
+The List   [3, 55, 77, 88]
+Enter the number of elements to split  : 2
+The split list is : [3, 55]
+The List after split and add : [77, 88, 3, 55]
+Q. Write a Python Program to check if given array is Monotonic?
+
+
+l = int(input("Enter the lenth of your list : "))
+arr = []
+
+for i in range(l):
+    arr.append(int(input()))
+print("The List is ",arr)
+
+if all((arr[i] <= arr[i+1] for i in range(l-1)) or (arr[i] >= lst[i+1] for i in range(l-1))):
+    print("Monotonic")
+else:
+    print("Not Monotonic")
+     
+Enter the lenth of your list : 5
+2
+3
+4
+5
+6
+The List is  [2, 3, 4, 5, 6]
+Monotonic
+
+
+     
