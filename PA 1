@@ -1,0 +1,39 @@
+#Answer 1
+
+print("Hello Python")
+Hello Python
+#Answer 2
+def add(a,b):
+    return a+b
+
+def divide(a,b):
+    return a/b
+add(3,5)
+8
+divide(4,5)
+0.8
+#Answer 3
+base = int(input("Enter the base of Triangle ="))
+Height = int(input("Enter the height of Triangle = "))
+Area = (Height*base)/2
+print("The Area of Triangle of Base {} , Height {} is {}".format(base , Height , Area))
+Enter the base of Triangle =4
+Enter the height of Triangle = 5
+The Area of Triangle of Base 4 , Height 5 is 10.0
+#Answer 4
+first_variable = int(input("First Variable ="))
+second_variable = int(input("Second Variable ="))
+print("First Variable Before swap  : {} \n Second variable Before Swap  : {}".format(first_variable,second_variable))
+first_variable , second_variable = second_variable , first_variable
+
+print("After Swap : \n First Variabe : {} \n  Second Variable : {}".format(first_variable , second_variable))
+First Variable =6
+Second Variable =8
+First Variable Before swap  : 6 
+ Second variable Before Swap  : 8
+After Swap : 
+ First Variabe : 8 
+  Second Variable : 6
+#Answer 5
+import random
+print(random.randint(0,6))
